@@ -1,13 +1,12 @@
-use axum::{routing::get, Router};
+use axum::Router;
+
+mod handlers;
+mod routes;
 
 #[tokio::main]
 async fn main() {
-    let app = Router::new().route("/", get(root));
+    let app = Router::new().merge(routes::example::get_routes());
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     axum::serve(listener, app).await.unwrap();
-}
-
-async fn root() -> &'static str {
-    "Hello, World!"
 }
