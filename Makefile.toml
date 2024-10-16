@@ -1,3 +1,8 @@
+[tasks.audit]
+install_crate = "cargo-audit"
+command = "cargo"
+args = ["audit"]
+
 [tasks.build]
 command = "cargo"
 args = ["build"]
@@ -24,3 +29,7 @@ dependencies = ["clean"]
 
 [tasks.my-flow]
 dependencies = ["format", "build", "test"]
+
+[tasks.dev]
+command = "cargo"
+args = ["watch", "-x", "check", "-x", "test", "-x", "run"]
